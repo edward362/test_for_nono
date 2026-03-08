@@ -1,7 +1,9 @@
 import { useState, useMemo } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { MetricsForm } from './components/MetricsForm';
 import { HydrationResult } from './components/HydrationResult';
+import { Pricing } from './components/Pricing';
 import type { Metrics } from './utils/hydration';
 import { calculateHydration } from './utils/hydration';
 
@@ -15,35 +17,43 @@ function App() {
   const hydrationGoal = useMemo(() => calculateHydration(metrics), [metrics]);
 
   return (
-    <div className="container" style={{
-      animation: 'slide-up 0.5s ease-out forwards',
-      opacity: 0, // initial state for animation
-    }}>
-      <Header />
-
-      <main style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '2rem',
-        alignItems: 'start'
+    <BrowserRouter>
+      <div className="container" style={{
+        animation: 'slide-up 0.5s ease-out forwards',
+        opacity: 0, // initial state for animation
+        maxWidth: '1000px', // increased width to accommodate new header and pricing layout
       }}>
-        {/* Left Column: Form */}
-        <MetricsForm metrics={metrics} onChange={setMetrics} />
+        <Header />
 
-        {/* Right Column: Result */}
-        <HydrationResult goalMl={hydrationGoal} />
-      </main>
+        <Routes>
+          <Route path="/" element={
+            <main style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2rem',
+              alignItems: 'start'
+            }}>
+              {/* Left Column: Form */}
+              <MetricsForm metrics={metrics} onChange={setMetrics} />
 
-      <footer style={{
-        textAlign: 'center',
-        padding: '2rem 0',
-        color: 'var(--color-text-muted)',
-        fontSize: '0.875rem',
-        marginTop: '2rem'
-      }}>
-        <p>Built with ❤️ using React & TypeScript</p>
-      </footer>
-    </div>
+              {/* Right Column: Result */}
+              <HydrationResult goalMl={hydrationGoal} />
+            </main>
+          } />
+          <Route path="/pricing" element={<Pricing />} />
+        </Routes>
+
+        <footer style={{
+          textAlign: 'center',
+          padding: '2rem 0',
+          color: 'var(--color-text-muted)',
+          fontSize: '0.875rem',
+          marginTop: '2rem'
+        }}>
+          <p>Built with ❤️ using React & TypeScript</p>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 

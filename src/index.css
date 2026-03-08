@@ -2,33 +2,33 @@
 
 :root {
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  
-  --color-bg-base: #0a0f1d;
-  --color-bg-gradient-start: #0f172a;
-  --color-bg-gradient-end: #020617;
-  
-  --color-surface: rgba(30, 41, 59, 0.6);
-  --color-surface-hover: rgba(30, 41, 59, 0.8);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-hover: rgba(56, 189, 248, 0.3);
-  
+
+  --color-bg-base: #f8fafc;
+  --color-bg-gradient-start: #f1f5f9;
+  --color-bg-gradient-end: #e2e8f0;
+
+  --color-surface: rgba(255, 255, 255, 0.8);
+  --color-surface-hover: rgba(255, 255, 255, 0.95);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-hover: rgba(14, 165, 233, 0.4);
+
   --color-primary: #0ea5e9;
   --color-primary-hover: #0284c7;
   --color-primary-light: #38bdf8;
   --color-secondary: #06b6d4;
-  
-  --color-text-main: #f8fafc;
-  --color-text-muted: #94a3b8;
-  
+
+  --color-text-main: #0f172a;
+  --color-text-muted: #64748b;
+
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.3);
-  
+
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-full: 9999px;
-  
+
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -42,9 +42,9 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg-base);
-  background: radial-gradient(circle at top right, #1e3a8a -20%, transparent 40%),
-              radial-gradient(circle at bottom left, #082f49 -20%, var(--color-bg-gradient-start) 40%),
-              var(--color-bg-gradient-end);
+  background: radial-gradient(circle at top right, #e0f2fe -20%, transparent 40%),
+    radial-gradient(circle at bottom left, #bae6fd -20%, var(--color-bg-gradient-start) 40%),
+    var(--color-bg-gradient-end);
   background-attachment: fixed;
   color: var(--color-text-main);
   line-height: 1.5;
@@ -61,20 +61,43 @@ body {
 
 /* Animations */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes pulse-glow {
-  0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(14, 165, 233, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(14, 165, 233, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+  }
 }
 
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Layout Utilities */
@@ -142,7 +165,7 @@ h2 {
 
 .input-base {
   width: 100%;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid var(--color-border);
   color: var(--color-text-main);
   border-radius: var(--radius-md);
@@ -166,7 +189,7 @@ h2 {
 }
 
 .selection-card {
-  background: rgba(15, 23, 42, 0.4);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 1rem;
@@ -181,7 +204,7 @@ h2 {
 }
 
 .selection-card:hover {
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border-color: var(--color-border-hover);
   transform: translateY(-2px);
 }
@@ -211,7 +234,7 @@ h2 {
   -webkit-appearance: none;
   width: 100%;
   height: 8px;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: var(--radius-full);
   outline: none;
 }
@@ -258,10 +281,21 @@ h2 {
 }
 
 @keyframes blob-morph {
-  0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-  34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-  67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
-  100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+
+  34% {
+    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+  }
+
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+  }
+
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
 }
 
 .blob-content {
@@ -274,7 +308,7 @@ h2 {
   font-size: 3rem;
   font-weight: 800;
   line-height: 1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .blob-unit {
